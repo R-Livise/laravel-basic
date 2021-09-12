@@ -14,6 +14,33 @@
   <div class="container">
     <div class="row">
       <div class="col-8 mx-auto">
+        <div class="card border-0 shadow">
+          <div class="card-body">
+            @if($errors->any())
+            <div class="alert alert-danger">
+              @foreach($errors->all() as $error)
+              -{{$error}} <br />
+              @endforeach
+            </div>
+            @endif
+            <form class="row" action="{{ route('users.store') }}" method="POST">
+              <div class="col-3">
+                <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{old('name')}}" />
+              </div>
+              <div class="col-4">
+                <input type="text" name="email" class="form-control" placeholder="Email" value="{{old('email')}}" />
+              </div>
+              <div class="col-3">
+                <input type="password" name="password" class="form-control" placeholder="Contraseña" value="{{old('password')}}" />
+              </div>
+              <div class="col-auto">
+                @csrf
+                <button class="btn btn-primary" type="submit"> Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <br />
         <table class="table">
           <thead>
             <tr>
